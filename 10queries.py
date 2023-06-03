@@ -1,3 +1,40 @@
+CREATE TABLE student_new (
+    id INTEGER PRIMARY KEY,
+    school TEXT,
+    sex TEXT,
+    age TEXT,
+    address TEXT,
+    famsize TEXT,
+    Pstatus TEXT,
+    Medu TEXT,
+    Fedu TEXT,
+    Mjob TEXT,
+    Fjob TEXT,
+    reason TEXT,
+    guardian TEXT,
+    traveltime TEXT,
+    studytime TEXT,
+    failures TEXT,
+    schoolsup TEXT,
+    famsup TEXT,
+    paid TEXT,
+    activities TEXT,
+    nursery TEXT,
+    higher TEXT,
+    internet TEXT,
+    romantic TEXT,
+    famrel TEXT,
+    freetime TEXT,
+    goout TEXT,
+    Dalc TEXT,
+    Walc TEXT,
+    health TEXT,
+    absences TEXT,
+    G1 TEXT,
+    G2 TEXT,
+    G3 TEXT);
+
+
 --Yingchen Yang
 CREATE TABLE Goout_alcohol (
   id TEXT PRIMARY KEY,
@@ -8,7 +45,7 @@ CREATE TABLE Goout_alcohol (
 
 INSERT INTO Goout_alcohol (id, Dalc, Walc, goout)
 SELECT id, Dalc, Walc, goout
-FROM student_por;
+FROM student_new;
 
 CREATE TABLE Internet_alcohol (
   id TEXT PRIMARY KEY,
@@ -19,13 +56,22 @@ CREATE TABLE Internet_alcohol (
 
 INSERT INTO Internet_alcohol (id, Dalc, Walc, internet)
 SELECT id, Dalc, Walc, internet
-FROM student_por;
+FROM student_new;
 
 --Katherine Wei
 CREATE TABLE failures AS SELECT Dalc, Walc, studytime, failures, COUNT(*) AS count FROM student_new GROUP BY failures;
 CREATE TABLE purpose AS SELECT studytime, failures, higher, COUNT(*) AS count FROM student_new GROUP BY studytime, failures, higher;
 
+--Ziyu Lin
+INSERT INTO student_new SELECT * FROM student_por;
 
+CREATE TABLE schoolreason AS SELECT school, sex, reason, COUNT(*) as count
+FROM student_new GROUP BY school, sex, reason;
+
+CREATE TABLE familyliving_temp AS Select DISTINCT id, school, sex, age, 
+address, famsize, Pstatus, Famrel, Dalc, Walc From student_new;
+
+CREATE TABLE familyliving AS SELECT *FROM familyliving_temp ORDER BY Dalc DESC, Walc DESC;
 
 
 -- Bonnie
