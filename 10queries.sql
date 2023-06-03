@@ -75,17 +75,20 @@ CREATE TABLE familyliving AS SELECT *FROM familyliving_temp ORDER BY Dalc DESC, 
 
 -- Bonnie Chen
 -- How does alcohol consumption affect students’ Math or Portuguese grade over time
-SELECT Dalc, Walc, AVG(G1) AS Average_Grade_G1, AVG(G2) AS Average_Grade_G2, AVG(G3) AS Average_Grade_G3
+CREATE TABLE Grade
+AS SELECT Dalc, Walc, AVG(G1) AS Average_Grade_G1, AVG(G2) AS Average_Grade_G2, AVG(G3) AS Average_Grade_G3
 FROM student_new
 GROUP BY Dalc, Walc
 ORDER BY Dalc, Walc;
 -- How does mom's jobs and guardian related to alcohol consumption?
-SELECT Mjob, guardian, AVG(Dalc) AS Average_Daily_Alcohol, AVG(Walc) AS Average_Weekly_Alcohol
+CREATE TABLE MomJob
+AS SELECT Mjob, guardian, AVG(Dalc) AS Average_Daily_Alcohol, AVG(Walc) AS Average_Weekly_Alcohol
 FROM student_new
 GROUP BY Mjob, guardian
 ORDER BY Mjob, guardian;
 -- How does dad's jobs and guardian related to alcohol consumption?
-SELECT Fjob, guardian, AVG(Dalc) AS Average_Daily_Alcohol, AVG(Walc) AS Average_Weekly_Alcohol
+CREATE TABLE DadJob
+AS SELECT Fjob, guardian, AVG(Dalc) AS Average_Daily_Alcohol, AVG(Walc) AS Average_Weekly_Alcohol
 FROM student_new
 GROUP BY Fjob, guardian
 ORDER BY Fjob, guardian;
