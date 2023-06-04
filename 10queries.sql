@@ -65,7 +65,7 @@ CREATE TABLE purpose AS SELECT studytime, failures, higher, COUNT(*) AS count FR
 
 --Ziyu Lin
 --If family living condition have relationship with alcohol consumption
---Why choose this schoo
+--Why choose this school
 INSERT INTO student_new SELECT * FROM student_por;
 CREATE TABLE schoolreason AS SELECT school, sex, reason, COUNT(*) as count
 FROM student_new GROUP BY school, sex, reason;
