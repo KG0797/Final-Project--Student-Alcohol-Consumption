@@ -1,2 +1,3 @@
 # Final-Project--Student-Alcohol-Consumption
 
+  Our group decided to analyze the data named “Student Alcohol Consumption”. This dataset contains a wide range of variables related to students' behavior and alcohol consumption. The data were obtained in a survey of students in secondary school mathematics and Portuguese language courses. It contains a lot of interesting social, gender, academic and health information about the students. As well as information about the student's family situation, why they chose this school, and the time spent in their life after school and academic performance. All of these data can effectively help us understand the relationship and impact between student alcohol consumption and other variables.
