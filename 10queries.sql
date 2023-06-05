@@ -94,7 +94,7 @@ GROUP BY Fjob, guardian
 ORDER BY Fjob, guardian;
 
 --Katherine Guo
---Higher grade means they like to take higher education
+--Exploring the relationship between the extra educational support and the student who wants to take higher education
 CREATE TABLE higher_eudcation AS SELECT id, schoolsup, famsup, paid, higher, G3 FROM student_new;
---Health condition for different age and sex students of alcohol consumption
-CREATE TABLE health_condition AS SELECT age, sex, Dalc, Walc, health FROM student_new;
+--Health condition for different age and sex students of daily/ weekly alcohol consumption
+CREATE TABLE health_condition AS SELECT id, age, sex, Dalc, Walc, health FROM student_new;
