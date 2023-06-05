@@ -1,3 +1,7 @@
+.open alcohol.sqlite
+.mode csv
+.import student_por.csv student_por
+
 CREATE TABLE student_new (
     id INTEGER PRIMARY KEY,
     school TEXT,
@@ -34,6 +38,8 @@ CREATE TABLE student_new (
     G2 TEXT,
     G3 TEXT);
 
+INSERT INTO student_new SELECT * FROM student_por;
+
 --Yingchen Yang
 --Will the frequency of going out with friends affect alcohol consumption
 CREATE TABLE Goout_alcohol (
@@ -59,19 +65,21 @@ FROM student_new;
 
 --Katherine Wei
 --How daily and weekend alcohol consumption affect a students’ student time and how it reflect the number of past classes failure 
-CREATE TABLE failures AS SELECT Dalc, Walc, studytime, failures, COUNT(*) AS count FROM student_new GROUP BY failures;
+CREATE TABLE failures AS SELECT Dalc, Walc, studytime, failures, COUNT(*) 
+AS count FROM student_new GROUP BY failures;
 --How does alcohol consumption affect students’ performance in school and studying, giving more enthusiasm or not?
-CREATE TABLE purpose AS SELECT studytime, failures, higher, COUNT(*) AS count FROM student_new GROUP BY studytime, failures, higher;
+CREATE TABLE purpose AS SELECT studytime, failures, higher, COUNT(*) 
+AS count FROM student_new GROUP BY studytime, failures, higher;
 
 --Ziyu Lin
 --If family living condition have relationship with alcohol consumption
 --Why choose this school
-INSERT INTO student_new SELECT * FROM student_por;
 CREATE TABLE schoolreason AS SELECT school, sex, reason, COUNT(*) as count
 FROM student_new GROUP BY school, sex, reason;
 CREATE TABLE familyliving_temp AS Select DISTINCT id, school, sex, age, 
 address, famsize, Pstatus, Famrel, Dalc, Walc From student_new;
 CREATE TABLE familyliving AS SELECT *FROM familyliving_temp ORDER BY Dalc DESC, Walc DESC;
+drop table familyliving_temp;
 
 -- Bonnie Chen
 -- How does alcohol consumption affect students’ Math or Portuguese grade over time
