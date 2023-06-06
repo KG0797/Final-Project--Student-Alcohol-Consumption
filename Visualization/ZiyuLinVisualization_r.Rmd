@@ -1,0 +1,34 @@
+
+```{r}
+library(tidyverse)
+first <- read_csv("data/first.csv")
+ggplot(first, aes(x = Dalc, y = Walc, color = address, shape = famsize)) +
+  geom_point() +
+  facet_grid(address ~ famsize) +
+  labs(x = "Dalc", y = "Walc", 
+       title = "Scatterplots of Dalc and Walc based on Address and Family Size") +
+  theme_minimal() +
+  scale_color_manual(values = c("blue", "red"), 
+                     labels = c("Urban", "Rural"), 
+                     name = "Address") +
+  scale_shape_manual(values = c(16, 17), 
+                     labels = c("Small", "Large"), 
+                     name = "Family Size") +
+  guides(color = guide_legend(), shape = guide_legend())
+summary_data <- first %>%
+group_by(famsize, address) %>%
+  summarize(mean_Dalc = mean(Dalc), mean_Walc = mean(Walc))
+
+# Create a grouped bar plot
+ggplot(summary_data, aes(x = famsize, y = mean_Dalc, fill = address)) +
+  geom_col(position = "dodge") +
+  labs(x = "Family Size", y = "Mean Dalc", fill = "Address",
+       title = "Mean Dalc by Family Size and Address") +
+  theme_minimal()
+
+ggplot(summary_data, aes(x = famsize, y = mean_Walc, fill = address)) +
+  geom_col(position = "dodge") +
+  labs(x = "Family Size", y = "Mean Walc", fill = "Address",
+       title = "Mean Walc by Family Size and Address") +
+  theme_minimal()
+```
